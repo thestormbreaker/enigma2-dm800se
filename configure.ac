@@ -87,6 +87,8 @@ AM_CONDITIONAL(DAGS6, test "$BOXTYPE" == "dags6")
 AM_CONDITIONAL(DM520, test "$BOXTYPE" == "dm520")
 AM_CONDITIONAL(DM7080, test "$BOXTYPE" == "dm7080")
 AM_CONDITIONAL(DM820, test "$BOXTYPE" == "dm820")
+AM_CONDITIONAL(DM800SE, test "$BOXTYPE" == dm800se)
+AM_CONDITIONAL(DM800SE, test "$BOXTYPE" == "dm800se")
 AM_CONDITIONAL(DM8000, test "$BOXTYPE" == "dm8000")
 AM_CONDITIONAL(DM8000, test "$BOXTYPE" == dm8000)
 AM_CONDITIONAL(DM900, test "$BOXTYPE" == dm900)
@@ -162,6 +164,7 @@ AM_CONDITIONAL(HAVE_COLORLCD2, test "$BOXTYPE" == dm820)
 AM_CONDITIONAL(HAVE_COLORLCD3, test "$BOXTYPE" == dm7080)
 AM_CONDITIONAL(HAVE_COLORLCD1, test "$BOXTYPE" == dm8000 -o "$BOXTYPE" == dm800 -o "$BOXTYPE" == dm7020hd -o "$BOXTYPE" == dm7020hdv2)
 AM_CONDITIONAL(HAVE_GRAUTEC8000, test "$BOXTYPE" == dm8000)
+AM_CONDITIONAL(HAVE_COLORLCD2, test "$BOXTYPE" == dm800se -o "$BOXTYPE" == dm800sev2 -o "$BOXTYPE" == dm820)
 
 AC_ARG_WITH(machinebuild,
 	[  --with-machinebuild=NAME machine build [[none,atemeo5200,atemeo6000...]]],
@@ -246,6 +249,11 @@ if test x"$withosdanimation" != xno ; then
 	AC_DEFINE(HAVE_OSDANIMATION, 1,[Define if driver supports animation of osd])
 fi
 AM_CONDITIONAL(HAVE_OSDANIMATION, test x"$withosdanimation" != xno)
+
+if test `echo "$BOXTYPE" | cut -b 1-2` == "dm"; then
+	AC_DEFINE(DREAMBOX, 1, [Dreambox hardware])
+	AC_DEFINE(KEY_PLAY_ACTUALLY_IS_KEY_PLAYPAUSE, 1,[define when rc sends a KEY_PLAY event for its KEY_PLAYPAUSE key])
+fi
 
 AC_ARG_WITH(nolcd,
 	AC_HELP_STRING([--with-nolcd], [disable ascii based lcd, yes or no]),
@@ -402,6 +410,14 @@ AM_CONDITIONAL(HAVE_OLDPVR, test x"$witholdpvr" != xno)
 if test `echo "$BOXTYPE" | cut -b 1-2` == "dm"; then
 	AC_DEFINE(DREAMBOX, 1, [Dreambox hardware])
 	AC_DEFINE(KEY_PLAY_ACTUALLY_IS_KEY_PLAYPAUSE, 1,[define when rc sends a KEY_PLAY event for its KEY_PLAYPAUSE key])
+fi
+
+if test "$BOXTYPE" == "dm7080" -o "$BOXTYPE" == "dm820" -o "$BOXTYPE" == "dm800se" -o "$BOXTYPE" == "dm800sev2" -o "$BOXTYPE" == "dm7020hd" -o "$BOXTYPE" == "dm7020hdv2" -o "$BOXTYPE" == "dm900" -o "$BOXTYPE" == "dm920"; then
+	AC_DEFINE(DREAMBOX_DUAL_TUNER, 1,[define BOXTYPE DM7080])
+fi
+
+if test "$BOXTYPE" == "dm7080" -o "$BOXTYPE" == "dm820"  -o "$BOXTYPE" == "dm900" -o "$BOXTYPE" == "dm920" -o "$BOXTYPE" == "dm520"; then
+	AC_DEFINE(CONFIG_ION, 1,[define BOX use ION Allocator])
 fi
 
 if test `echo "$BOXTYPE" | cut -b 1-2` == "et" ; then
@@ -612,7 +628,7 @@ AX_CXX_COMPILE_STDCXX_11([ext],[mandatory])
 
 CPPFLAGS="$CPPFLAGS $PYTHON_CPPFLAGS"
 CFLAGS="$CFLAGS -Wall"
-CXXFLAGS="$CXXFLAGS -Wall $BASE_CFLAGS $ENIGMA2_CFLAGS $PTHREAD_CFLAGS $OPENMP_CFLAGS $ALSA_CFLAGS $GLES_CFLAGS"
+CXXFLAGS="$CXXFLAGS -Wall $BASE_CFLAGS $ENIGMA2_CFLAGS $PTHREAD_CFLAGS $OPENMP_CFLAGS $GLES_CFLAGS $ALSA_CFLAGS $AMCODEC_CFLAGS $AMADEC_CFLAGS $DVBCSA_CFLAGS"
 AX_SWIG_PYTHON_OPT="$AX_SWIG_PYTHON_OPT -DSWIG_PYTHON_LEGACY_BOOL"
 
 AC_CONFIG_FILES([
