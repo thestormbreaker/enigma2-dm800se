@@ -56,7 +56,7 @@ def listsDirPath():
 				return line.replace('\n','').split(' ')[2]
 	except IOError:
 		print "[Opkg] cannot open /etc/opkg/opkg.conf"
-	return '/var/lib/opkg/lists'
+	return '/var/volatile/tmp'
 
 if __name__ == '__main__':
 	for p in enumPlugins('enigma'):
