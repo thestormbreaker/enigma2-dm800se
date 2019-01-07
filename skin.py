@@ -288,23 +288,18 @@ def collectAttributes(skinAttributes, node, context, skin_path_prefix=None, igno
 
 def morphRcImagePath(value):
 	if rc_model.rcIsDefault() is False:
-		if value == '/usr/share/enigma2/skin_default/rc.png' or value == '/usr/share/enigma2/skin_default/rcold.png':
-			value = rc_model.getRcLocation() + 'rc.png'
-		elif value == '/usr/share/enigma2/skin_default/rc0.png' or value == '/usr/share/enigma2/skin_default/rc1.png' or value == '/usr/share/enigma2/skin_default/rc2.png':
+		if ('rc.png' or 'oldrc.png') in value:
 			value = rc_model.getRcLocation() + 'rc.png'
 	return value
 
 def loadPixmap(path, desktop):
-	cached = False
 	option = path.find("#")
 	if option != -1:
-		options = path[option+1:].split(',')
 		path = path[:option]
-		cached = "cached" in options
-	ptr = LoadPixmap(morphRcImagePath(path), desktop, cached)
-	if ptr is not None:
-		return ptr
-	print("pixmap file %s not found!" % path)
+	ptr = LoadPixmap(morphRcImagePath(path), desktop)
+	if ptr is None:
+		raise SkinError("[Skin] pixmap file %s not found!" % path)
+	return ptr
 
 class AttributeParser:
 	def __init__(self, guiObject, desktop, scale=((1,1),(1,1))):

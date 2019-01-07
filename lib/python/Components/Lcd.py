@@ -1,4 +1,4 @@
-from boxbranding import getBoxType, getDisplayType
+from boxbranding import getBoxType
 from sys import maxint
 
 from twisted.internet import threads
@@ -349,7 +349,10 @@ def InitLcd():
 			config.lcd.contrast.addNotifier(setLCDcontrast)
 		else:
 			config.lcd.contrast = ConfigNothing()
-			standby_default = 1
+			if getBoxType() in ('dm900'):
+				standby_default = 4
+			else:
+				standby_default = 1
 
 		config.lcd.standby = ConfigSlider(default=standby_default, limits=(0, 10))
 		config.lcd.standby.addNotifier(setLCDbright)

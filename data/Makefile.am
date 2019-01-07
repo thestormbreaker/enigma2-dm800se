@@ -17,8 +17,7 @@ dist_pkgdata_DATA = \
 	unicable.xml \
 	hd-testcard.mvi \
 	iso-639-3.pck \
-	distro-logo.png \
-        groupedservices
+	distro-logo.png
 
 if HAVE_TEXTLCD
 SUBDIRS += displaytext
