@@ -6,6 +6,7 @@ dist: trusty
 branches:
   only:
   - Dev
+  - T2MI
 
 addons:
   apt:
@@ -178,4 +179,3 @@ script:
 - make
 - python -m compileall .
 - echo done!
-
