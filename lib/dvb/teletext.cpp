@@ -253,7 +253,7 @@ void eDVBTeletextParser::processPESPacket(uint8_t *pkt, int len)
 {
 	unsigned char *p = pkt;
 
-	pts_t pts;
+	pts_t pts = 0;
 	int have_pts = extractPTS(pts, pkt);
 
 	//eDebug("[eDVBTeletextParser] PES packet len=%d", len);
@@ -665,4 +665,3 @@ void eDVBTeletextParser::addSubtitleString(int color, std::string string, int so
 
 	m_subtitle_page.m_elements.push_back(eDVBTeletextSubtitlePageElement(pal[color], string, source_line));
 }
-
