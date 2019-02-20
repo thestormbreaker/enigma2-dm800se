@@ -1,4 +1,4 @@
-from boxbranding import getBoxType
+from boxbranding import getBoxType, getDisplayType
 from sys import maxint
 
 from twisted.internet import threads

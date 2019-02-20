@@ -671,8 +671,6 @@ void eDVBCIInterfaces::recheckPMTHandlers()
 								}
 							}
 						}
-						ASSERT(tunernum != -1);
-
 						ci_it->current_tuner = tunernum;
 					}
 					else
