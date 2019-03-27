@@ -14,7 +14,7 @@ from Tools.LoadPixmap import LoadPixmap
 from Tools.Directories import fileExists, pathExists, resolveFilename, SCOPE_CURRENT_SKIN
 from os import system, remove as os_remove, rename as os_rename, popen, getcwd, chdir
 from Screens.Setup import Setup
-from Plugins.SystemPlugins.NetworkBrowser.NetworkBrowser import NetworkBrowser
+#from Plugins.SystemPlugins.NetworkBrowser.NetworkBrowser import NetworkBrowser
 from enigma import eTimer
 from Screens.Console import Console
 import process
@@ -286,13 +286,13 @@ class BhNetBrowser(Screen):
 			self.list.append(res)
 
 		self["list"].list = self.list
-		
-	def selectInte(self):
-		mysel = self["list"].getCurrent()
-		if mysel:
-			inter = mysel[1]
-			self.session.open(NetworkBrowser, inter, "/usr/lib/enigma2/python/Plugins/SystemPlugins/NetworkBrowser")
-
+#		
+#	def selectInte(self):
+#		mysel = self["list"].getCurrent()
+#		if mysel:
+#			inter = mysel[1]
+#			self.session.open(NetworkBrowser, inter, "/usr/lib/enigma2/python/Plugins/SystemPlugins/NetworkBrowser")
+#
 
 class BhMinidlna(Screen):
 	skin = """

@@ -10,7 +10,9 @@ openbh: release 4.2.008
 openbh: release 4.2.009
 openbh: release 4.2.010
 openbh: release 4.2.011
+openbh: release 4.2.012
 openbh: release 4.2.013
+openbh: release 4.2.014
 openbh: release 4.2.015
 openbh: release 4.2.016
 openbh: release 4.2.017
@@ -26,3 +28,8 @@ openbh: release 4.2.026
 openbh: release 4.2.027
 openbh: release 4.2.028
 openbh: release 4.2.029
+openbh: release 4.2.030
+openbh: release 4.2.031
+openbh: release 4.2.032
+openbh: release 4.2.033
+openbh: release 4.2.034
