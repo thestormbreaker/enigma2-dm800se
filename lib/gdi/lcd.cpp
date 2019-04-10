@@ -67,7 +67,7 @@ void eLCD::renderText(ePoint start, const char *text)
 		if (::write(lcdfd, message.c_str(), message.size()) == -1)
 		{
 			eDebug("[eLCD] renderText %s failed (%m)", text);
-		}
+		}		
 	}
 }
 #endif
